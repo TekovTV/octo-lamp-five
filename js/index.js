@@ -44,6 +44,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'Which of the following animals is not native to Australia?',
+      o: ['Koala', 'Kangaroo', 'Dingo', 'Bullfrog'],
+      a: 3,
+    },
+    {
+      q: 'Which is the largest desert in the world?',
+      o: ['Sahara', 'Antarctic desert', 'Kalahari', 'Gobi'],
+      a: 0,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -76,10 +86,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          style.backgroundColor = "green";
+          // `li_${index}_${i}`
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
+          console.log("You got it correct")
         }
       }
     });
@@ -87,4 +100,34 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // call the displayQuiz function
   displayQuiz();
+});
+
+// Reset button functionality
+const resetPageBtn = document.querySelector('#btnReset');
+
+resetPageBtn.addEventListener('click', function(){
+  location.reload();
+});
+
+// Countdown timer (working??? YES!!!)
+const countdown = () => {
+  let min = 0;
+  let sec = 59;
+  
+  const counter = () => {
+  if (sec === 0) {
+    alert("Time is up!");
+    location.reload();
+  } else {
+    sec--;
+  }
+  document.getElementById('time').innerHTML = `${min}:${sec < 10 ? '0' + sec : sec}`;
+
+}
+const timer = setInterval(counter, 1000);
+}
+
+//begin countdown on start up 
+start.addEventListener('click', function(){
+  countdown()
 });
